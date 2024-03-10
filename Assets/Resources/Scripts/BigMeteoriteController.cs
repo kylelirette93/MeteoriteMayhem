@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BigMeteoriteController : MonoBehaviour
 {
-    private float floatSpeed = 3f;
+    private float floatSpeed = 1f;
     Vector2 randomDirection;
 
     private GameManager gameManagerScript;

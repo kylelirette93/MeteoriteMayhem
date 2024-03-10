@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SmallMeteoriteController : MonoBehaviour
 {
-    private float floatSpeed = 3f;
+    private float floatSpeed = 2f;
     Vector2 randomDirection;
     private CircleCollider2D circleCollider;
 
