@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae8bd37033005a41a021ba7dfc404fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatSpeed: 1
+  explosionSound: {fileID: 8300000, guid: 7d309ca86224d35439918d293ce675b7, type: 3}
   smallMeteoritePrefab: {fileID: 6532824061521020080, guid: dde2d1b83de25d64da0182a709da6727, type: 3}
 --- !u!58 &8342718213825345373
 CircleCollider2D:

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6552241670878359957}
   - component: {fileID: 8772196104395818490}
   - component: {fileID: 7911357165992898196}
+  - component: {fileID: 3389777112569167137}
   m_Layer: 6
   m_Name: Bullet
   m_TagString: Bullet
@@ -158,3 +159,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &3389777112569167137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752882648533577162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2042a22bda20dbc4daa68676dd08e92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidExplosion: {fileID: 0}
+  lifetime: 0.5

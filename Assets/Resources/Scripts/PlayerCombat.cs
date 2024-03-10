@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     public GameObject bulletPrefab;
     private GameObject bulletClone;
     private float bulletSpeed = 25f;
+    public AudioSource bulletClip;
     
     
     private float yOffset = 0.5f;
@@ -21,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
 
     void FireBullet()
     {
+        bulletClip.Play();
         Vector2 bulletOffset = new Vector2(0f, yOffset);
         Vector2 bulletPosition = (Vector2)(transform.position + transform.TransformDirection(bulletOffset));
         bulletClone = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);

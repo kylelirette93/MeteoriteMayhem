@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
         StartCoroutine(DestroyAfterDelay());
     }
 
-    public IEnumerator DestroyAfterDelay()
+    IEnumerator DestroyAfterDelay()
     {
         yield return new WaitForSeconds(lifetime);
         Destroy(gameObject); // Destroy the bullet clone

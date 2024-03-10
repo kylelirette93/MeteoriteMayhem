@@ -11,6 +11,8 @@ public class SmallMeteoriteController : MonoBehaviour
     private GameManager gameManagerScript;
     private bool alreadyHit = false;
 
+    public AudioClip explosionSound;
+
     private GameObject bullet;
     bool isDestroyed = false;
     
@@ -53,6 +55,11 @@ public class SmallMeteoriteController : MonoBehaviour
 
                         // Log a message to verify score increment
                         Debug.Log("Score incremented!");
+
+                        if (explosionSound != null)
+                        {
+                            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+                        }
 
                         // Set the alreadyHit flag to true
                         alreadyHit = true;

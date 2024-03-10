@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class BigMeteoriteController : MonoBehaviour
 {
-    private float floatSpeed = 1f;
+    public float floatSpeed = 1f;
     Vector2 randomDirection;
 
     private GameManager gameManagerScript;
     private bool alreadyHit = false;
+
+    public AudioClip explosionSound;
+
+    
 
     private GameObject bullet;
     bool isDestroyed = false;
@@ -42,11 +46,17 @@ public class BigMeteoriteController : MonoBehaviour
                     // Log a message to verify score increment
                     Debug.Log("Score incremented!");
 
+                    if (explosionSound != null)
+                    {
+                        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+                    }
+
                     // Set the alreadyHit flag to true
                     alreadyHit = true;
                 }
 
                 // Destroy the big meteorite
+                
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
 

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        levelCompleteText.text = "Level " + (currentSceneIndex + 1) + " Complete\n Nice Work!";
+        levelCompleteText.text = "Level " + currentSceneIndex + " Complete\n Nice Work!";
         player = GameObject.Find("Player");
         currentLives = startingLives;
         UpdateShipImages();
@@ -44,6 +44,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("1");
     }
 
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
     public void QuitGame()
     {
         Application.Quit();
