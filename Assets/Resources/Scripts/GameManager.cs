@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
-    public int requiredScore = 4000; // Set the required score for victory
+    public TextMeshProUGUI levelCompleteText;
+    int currentSceneIndex;
+    public int requiredScore; // Set the required score for victory
     private int currentScore = 0;
     public int startingLives = 3;
     private int currentLives;
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        levelCompleteText.gameObject.SetActive(false);
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        levelCompleteText.text = "Level " + (currentSceneIndex + 1) + " Complete\n Nice Work!";
         player = GameObject.Find("Player");
         currentLives = startingLives;
         UpdateShipImages();
@@ -35,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+       
         SceneManager.LoadScene("1");
     }
 
@@ -44,15 +50,13 @@ public class GameManager : MonoBehaviour
     }
     public void LoseLife()
     {
-        currentLives--;
-        if (currentLives == 3)
+        if (player != null)
         {
             Destroy(player.gameObject);
         }
-        else
-        {
-            Destroy(playerPrefab.gameObject);
-        }
+
+        currentLives--;
+ 
         Invoke("Respawn", 0.4f);
         livesText.text = currentLives.ToString() + " Lives Left";
         
@@ -67,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     void Respawn()
     {
-        GameObject newPlayer = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
     }
     void UpdateShipImages()
     {
@@ -82,14 +86,38 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "1")
+        {
+            requiredScore = 2400;
+        }
+        if (SceneManager.GetActiveScene().name == "2")
+        {
+            requiredScore = 4000;
+        }
+        if (SceneManager.GetActiveScene().name == "3")
+        {
+            requiredScore = 5600;
+        }
+        if (SceneManager.GetActiveScene().name == "4")
+        {
+            requiredScore = 8000;
+        }
         // Check if the current score meets the required score for victory
         if (currentScore >= requiredScore)
         {
             Debug.Log("Victory!");
+            levelCompleteText.gameObject.SetActive(true);
+            Invoke("LoadNextScene", 3f);
+            
             // Add any additional victory-related logic here
         }
     }
 
+    void LoadNextScene()
+    {
+        
+        SceneManager.LoadScene(currentSceneIndex + 1);
+    }
     // Method to increment the score
     public void IncrementScore(int amount)
     {

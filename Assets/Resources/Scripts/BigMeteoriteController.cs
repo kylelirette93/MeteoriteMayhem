@@ -48,6 +48,7 @@ public class BigMeteoriteController : MonoBehaviour
 
                 // Destroy the big meteorite
                 Destroy(gameObject);
+                Destroy(collision.gameObject);
 
                 // Log a message to verify destruction
                 Debug.Log("Big meteorite destroyed!");

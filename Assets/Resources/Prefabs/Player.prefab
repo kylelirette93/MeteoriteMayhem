@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5471999500361681993
 SpriteRenderer:
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf3eea15a4b40a4988b334e9e6c3107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3752882648533577162, guid: 781842cb552d5bd45b9418f7ec8da10d, type: 3}
 --- !u!61 &6992275339303468636
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &4275345455122952702
 MonoBehaviour:

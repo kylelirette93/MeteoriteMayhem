@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private GameObject bulletPrefab;
+    public GameObject bulletPrefab;
     private GameObject bulletClone;
     private float bulletSpeed = 25f;
     
@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletPrefab = GameObject.Find("Bullet");
+        
         player = transform;
     }
 

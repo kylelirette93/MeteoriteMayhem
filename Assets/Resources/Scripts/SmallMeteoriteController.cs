@@ -59,6 +59,7 @@ public class SmallMeteoriteController : MonoBehaviour
 
                         // Set the flag to true
                         isDestroyed = true;
+                        Destroy(collision.gameObject);
                         break; // Exit the loop once a bullet collision is detected
                     }
                 }
