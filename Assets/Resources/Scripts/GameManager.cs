@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI levelText;
     public TextMeshProUGUI levelCompleteText;
+    
     int currentSceneIndex;
     public int requiredScore; // Set the required score for victory
     private int currentScore = 0;
@@ -22,11 +24,20 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        levelText.text = "Level " + SceneManager.GetActiveScene().buildIndex.ToString();
         levelCompleteText.gameObject.SetActive(false);
         if (instance == null)
+        {
             instance = this;
+            
+        }
         else if (instance != this)
+        {
             Destroy(gameObject);
+        }
+
+        currentScore = PlayerPrefs.GetInt("CurrentScore", 0);
+        scoreText.text = "Score " + currentScore.ToString();
     }
 
     private void Start()
@@ -64,8 +75,7 @@ public class GameManager : MonoBehaviour
         }
 
         currentLives--;
- 
-        Invoke("Respawn", 0.4f);
+        Invoke("Respawn", 0.2f);
         livesText.text = currentLives.ToString() + " Lives Left";
         
         UpdateShipImages();
@@ -76,10 +86,16 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
-
     void Respawn()
     {
         player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        player.GetComponent<Animator>().SetBool("isRespawning", true);
+        Invoke("EnablePlayerCollider", 2f);
+    }
+    private void EnablePlayerCollider()
+    {
+        player.GetComponent<Collider2D>().enabled = true;
+        player.GetComponent<Animator>().SetBool("isRespawning", false);
     }
     void UpdateShipImages()
     {
@@ -100,15 +116,40 @@ public class GameManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "2")
         {
-            requiredScore = 4000;
+            
+            requiredScore = 6400;
         }
         if (SceneManager.GetActiveScene().name == "3")
         {
-            requiredScore = 5600;
+            requiredScore = 12000;
         }
         if (SceneManager.GetActiveScene().name == "4")
         {
-            requiredScore = 8000;
+            requiredScore = 20000;
+        }
+        if (SceneManager.GetActiveScene().name == "5")
+        {
+            requiredScore = 29600;
+        }
+        if (SceneManager.GetActiveScene().name == "6")
+        {
+            requiredScore = 39200;
+        }
+        if (SceneManager.GetActiveScene().name == "7")
+        {
+            requiredScore = 48800;
+        }
+        if (SceneManager.GetActiveScene().name == "8")
+        {
+            requiredScore = 58400;
+        }
+        if (SceneManager.GetActiveScene().name == "9")
+        {
+            requiredScore = 68000;
+        }
+        if (SceneManager.GetActiveScene().name == "10")
+        {
+            requiredScore = 77600;
         }
         // Check if the current score meets the required score for victory
         if (currentScore >= requiredScore)
@@ -123,8 +164,14 @@ public class GameManager : MonoBehaviour
 
     void LoadNextScene()
     {
-        
         SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
+    private void OnDestroy()
+    {
+        // Save the current score to PlayerPrefs when the GameManager is destroyed
+        PlayerPrefs.SetInt("CurrentScore", currentScore);
+        PlayerPrefs.Save();
     }
     // Method to increment the score
     public void IncrementScore(int amount)

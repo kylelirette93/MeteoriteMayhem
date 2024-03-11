@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SmallMeteoriteController : MonoBehaviour
 {
-    private float floatSpeed = 2f;
+
+    public float floatSpeed = 2f;
     Vector2 randomDirection;
     private CircleCollider2D circleCollider;
+    private BigMeteoriteController BMCScript;
 
     private GameManager gameManagerScript;
     private bool alreadyHit = false;
@@ -19,6 +21,7 @@ public class SmallMeteoriteController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+       
         gameManagerScript = GameObject.Find("_GM").GetComponent<GameManager>();
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.enabled = false;
@@ -89,21 +92,21 @@ public class SmallMeteoriteController : MonoBehaviour
         // Wrap around the screen in the x-axis
         if (transform.position.x > cam.transform.position.x + cam.orthographicSize * cam.aspect)
         {
-            newPosition.x = -cam.transform.position.x - cam.orthographicSize * cam.aspect;
+            newPosition.x = -cam.orthographicSize * cam.aspect;
         }
         else if (transform.position.x < cam.transform.position.x - cam.orthographicSize * cam.aspect)
         {
-            newPosition.x = -cam.transform.position.x + cam.orthographicSize * cam.aspect;
+            newPosition.x = cam.orthographicSize * cam.aspect;
         }
 
         // Wrap around the screen in the y-axis
         if (transform.position.y > cam.transform.position.y + cam.orthographicSize)
         {
-            newPosition.y = -cam.transform.position.y - cam.orthographicSize;
+            newPosition.y = -cam.orthographicSize;
         }
         else if (transform.position.y < cam.transform.position.y - cam.orthographicSize)
         {
-            newPosition.y = -cam.transform.position.y + cam.orthographicSize;
+            newPosition.y = cam.orthographicSize;
         }
 
         transform.position = newPosition;

@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4ba47b54154b449a5dde8579f7efa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigMeteoritePrefab: {fileID: 2507906243693577613, guid: d793510f771338347ad7304cb9956627, type: 3}
   explosionSound: {fileID: 8300000, guid: 7d309ca86224d35439918d293ce675b7, type: 3}
