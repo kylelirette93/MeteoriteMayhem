@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2715861389023675152}
   - component: {fileID: 8342718213825345373}
   - component: {fileID: 8434309922522996617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Big_Meteorite
   m_TagString: BigMeteorite
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2507906243693577613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.9, y: 3.62, z: 0.023101948}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae8bd37033005a41a021ba7dfc404fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatSpeed: 1
+  floatSpeed: 0.5
+  maxSpeed: 2
   explosionSound: {fileID: 8300000, guid: 7d309ca86224d35439918d293ce675b7, type: 3}
   smallMeteoritePrefab: {fileID: 6532824061521020080, guid: dde2d1b83de25d64da0182a709da6727, type: 3}
 --- !u!58 &8342718213825345373
@@ -117,7 +118,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

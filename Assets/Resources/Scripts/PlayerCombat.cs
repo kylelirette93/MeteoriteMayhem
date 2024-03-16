@@ -30,11 +30,7 @@ public class PlayerCombat : MonoBehaviour
         Vector3 bulletDirection = transform.forward;
         bulletRb.velocity = transform.up * bulletSpeed;
 
-        Bullet bulletScript = bulletClone.GetComponent<Bullet>();
-        if (bulletScript != null)
-        {
-            bulletScript.StartDestroyCoroutine();
-        }
+        
     }
 
    

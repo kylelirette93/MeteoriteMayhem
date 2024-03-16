@@ -10,38 +10,11 @@ EditorBuildSettings:
     guid: fdef7a083d1ed604aba8b92150feeded
   - enabled: 1
     path: Assets/Scenes/1.unity
-    guid: f39c60aecaca918448ed76826e5cfa9f
-  - enabled: 1
-    path: Assets/Scenes/2.unity
-    guid: db10a3959cfbaaf4d963a5323e456452
-  - enabled: 1
-    path: Assets/Scenes/3.unity
-    guid: f10a69491e1e1f2408c35decf8adce1f
-  - enabled: 1
-    path: Assets/Scenes/4.unity
-    guid: c1d1754b1f9a87e4fafb52e38f71055b
-  - enabled: 1
-    path: Assets/Scenes/5.unity
-    guid: d89b855a3203ba24e82ba45a36a26dc7
-  - enabled: 1
-    path: Assets/Scenes/6.unity
-    guid: 8ed8570905d71e84d9817d49c3cc2566
-  - enabled: 1
-    path: Assets/Scenes/7.unity
-    guid: 2e44aeaa9e9df79478e8ff3e0c48b25a
-  - enabled: 1
-    path: Assets/Scenes/8.unity
-    guid: ae329b1d499b4fc4b9066c21678e0db4
-  - enabled: 1
-    path: Assets/Scenes/9.unity
-    guid: 745b6a2d7870b3a45b6634b3839935e1
-  - enabled: 1
-    path: Assets/Scenes/10.unity
     guid: 4cc3e2d83655bb24f97961dbf0a0e489
-  - enabled: 1
-    path: Assets/Scenes/Controls.unity
-    guid: f4c8ca109b29b6b4aace152c249326e9
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 6da055ee05049d44b8650e65c7b5c47d
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: f4c8ca109b29b6b4aace152c249326e9
   m_configObjects: {}

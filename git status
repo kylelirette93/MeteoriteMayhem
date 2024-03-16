@@ -1,0 +1,53 @@
+[33mcommit 6ed88340eec7bd5d951478ded578f1b54cfaafea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: miseryvibe93 <=>
+Date:   Mon Mar 11 20:48:00 2024 -0300
+
+    UI & Canvas updates, respawn animation, more levels
+
+[33mcommit 76545593072e296c127ba30f585066864992d0dd[m
+Author: miseryvibe93 <=>
+Date:   Sun Mar 10 18:21:27 2024 -0300
+
+    Added menu, corrected build, add some sound effects
+
+[33mcommit 65e77bb590d465a5fbca9ce953e7298055a350fd[m
+Author: miseryvibe93 <=>
+Date:   Sun Mar 10 15:43:40 2024 -0300
+
+    UI overall, game manager overhaul
+
+[33mcommit 9c18fa5730a560d6adfac16d1bbb17b2fc45bc3a[m
+Author: miseryvibe93 <=>
+Date:   Sun Mar 10 14:09:59 2024 -0300
+
+    Created UI system, game over scene, playerHealth script
+
+[33mcommit 1105474b096e0db6e8549897864c841fc3d1e43e[m
+Author: miseryvibe93 <=>
+Date:   Sat Mar 9 18:17:33 2024 -0400
+
+    Created small meteor prefab to instantiate, and game manager object
+
+[33mcommit 414d5f44bdaed14a301ce599440a45f419f681b3[m
+Author: miseryvibe93 <=>
+Date:   Sat Mar 9 12:26:31 2024 -0400
+
+    add meteorites, script to control, random movement, screen wrap
+
+[33mcommit 08f145bf1dc04efccb16ad5c90f6bf085a96a587[m
+Author: miseryvibe93 <=>
+Date:   Fri Mar 8 21:30:35 2024 -0400
+
+    added bullet prefab, bullet script, player combat script
+
+[33mcommit b6ca5ee5f866bbfb7bd0183e0cfc90eb015482f0[m
+Author: miseryvibe93 <=>
+Date:   Fri Mar 8 20:26:08 2024 -0400
+
+    Created player object, movement script and animations.
+
+[33mcommit c29f5f508120a3cc4ab0fb5ba556101c4ee34782[m
+Author: miseryvibe93 <=>
+Date:   Fri Mar 8 16:36:37 2024 -0400
+
+    First commit, empty project and .gitignore

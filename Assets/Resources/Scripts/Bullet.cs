@@ -1,18 +1,19 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float lifetime = 0.5f;
-
-    public void StartDestroyCoroutine()
+    public float destroyDelay = 1.0f;
+    // Start is called before the first frame update
+    void Start()
     {
-        StartCoroutine(DestroyAfterDelay());
+        Invoke("DestroyBullet", destroyDelay);
     }
 
-    IEnumerator DestroyAfterDelay()
+    // Update is called once per frame
+   void DestroyBullet()
     {
-        yield return new WaitForSeconds(lifetime);
-        Destroy(gameObject); // Destroy the bullet clone
+        Destroy(gameObject);
     }
 }

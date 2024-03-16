@@ -1,53 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
-public class PlayerMovement : MonoBehaviour
+public abstract class MeteoriteController : MonoBehaviour
 {
-    private float rotationSpeed = 300f;
-    private float flySpeed = 6f;
-    private Animator anim;
+    public float floatSpeed;
     Camera mainCamera;
+    protected Vector2 randomDirection;
+    protected Rigidbody2D rb;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         mainCamera = Camera.main;
-        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        randomDirection = Random.insideUnitCircle.normalized;
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
+        Move();
         WrapAroundScreen();
-
-        float zRotation = Input.GetAxis("Horizontal");
-
-        float rotationAmount = zRotation * rotationSpeed * Time.deltaTime;
-
-        float yInput = Input.GetAxis("Vertical");
-
-
-
-        if (Mathf.Abs(zRotation) > 0)
-        {
-            transform.Rotate(-Vector3.forward, rotationAmount);
-        }
-
-        if (Mathf.Abs(yInput) > 0)
-        {
-            anim.SetBool("isFlying", true);
-            transform.Translate(new Vector3(0, yInput * flySpeed * Time.deltaTime, 0));
-        }
-        else
-        {
-            anim.SetBool("isFlying", false);
-        }
-
-
     }
 
-    void WrapAroundScreen()
+    protected void Move()
+    {
+        rb.velocity = randomDirection * floatSpeed;
+    }
+
+    protected void WrapAroundScreen()
     {
         Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position);
 
@@ -69,6 +49,16 @@ public class PlayerMovement : MonoBehaviour
                 newPosition.y = mainCamera.ViewportToWorldPoint(new Vector3(viewPos.x, 0, viewPos.z)).y;
 
             transform.position = newPosition;
+        }
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            // Handle collision with bullet
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

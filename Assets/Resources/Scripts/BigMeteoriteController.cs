@@ -1,122 +1,86 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BigMeteoriteController : MonoBehaviour
+public class BigMeteoriteController : MeteoriteController
 {
-    public float floatSpeed = 1f;
-    Vector2 randomDirection;
-
+    public float maxSpeed = 2f;
     private GameManager gameManagerScript;
     private bool alreadyHit = false;
-
     public AudioClip explosionSound;
-
-    
-
-    private GameObject bullet;
-    bool isDestroyed = false;
     public GameObject smallMeteoritePrefab;
-    // Start is called before the first frame update
-    void Start()
+    bool isDestroyed = false;
+
+    protected override void Start()
     {
-        gameManagerScript = GameObject.Find("_GM").GetComponent<GameManager>();
-        randomDirection = Random.insideUnitCircle.normalized;
-        bullet = GameObject.FindWithTag("Bullet");
-        
+        base.Start(); // Call the base Start method to initialize common variables
+
+        gameManagerScript = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision); // Call the base method first for common collision handling
+
         if (!isDestroyed && collision.gameObject.CompareTag("Bullet"))
         {
-            // Check if the gameObject reference is not null
-            if (collision.gameObject != null)
-            {
-                // Ensure the collision occurs only once
-                if (!alreadyHit)
-                {
-                    // Log a message to verify collision detection
-                    Debug.Log("Collision with bullet detected!");
-
-                    // Increment the score
-                    gameManagerScript.IncrementScore(400);
-
-                    // Log a message to verify score increment
-                    Debug.Log("Score incremented!");
-
-                    if (explosionSound != null)
-                    {
-                        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-                    }
-
-                    // Set the alreadyHit flag to true
-                    alreadyHit = true;
-                }
-
-                // Destroy the big meteorite
-                
-                Destroy(gameObject);
-                Destroy(collision.gameObject);
-
-                // Log a message to verify destruction
-                Debug.Log("Big meteorite destroyed!");
-
-                // Instantiate two smaller meteorites
-                if (smallMeteoritePrefab != null)
-                {
-                    Instantiate(smallMeteoritePrefab, transform.position, Quaternion.identity);
-                    Instantiate(smallMeteoritePrefab, transform.position, Quaternion.identity);
-
-                    // Log a message to verify instantiation
-                    Debug.Log("Smaller meteorites instantiated!");
-                }
-                else
-                {
-                    // Log a warning if the prefab is null
-                    Debug.LogWarning("Small meteorite prefab is null!");
-                }
-
-                // Set the flag to true to prevent multiple splits
-                isDestroyed = true;
-            }
+            HandleBulletCollision(collision.gameObject);
+        }
+        else if (!isDestroyed && (collision.gameObject.CompareTag("BigMeteorite") || collision.gameObject.CompareTag("SmallMeteorite")))
+        {
+            LimitSpeed();
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    void HandleBulletCollision(GameObject bullet)
     {
-        transform.Translate(randomDirection * floatSpeed * Time.deltaTime);
-        ScreenWrap();
+        if (!alreadyHit)
+        {
+            gameManagerScript.IncrementScore(400);
+            alreadyHit = true;
+        }
+
+        DestroyMeteorite();
+        Destroy(bullet);
     }
 
-    void ScreenWrap()
+    void LimitSpeed()
     {
-        var cam = Camera.main;
-        var newPosition = transform.position;
-
-        // Wrap around the screen in the x-axis
-        if (transform.position.x > cam.transform.position.x + cam.orthographicSize * cam.aspect)
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb.velocity.magnitude > maxSpeed)
         {
-            newPosition.x = -cam.transform.position.x - cam.orthographicSize * cam.aspect;
+            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-        else if (transform.position.x < cam.transform.position.x - cam.orthographicSize * cam.aspect)
-        {
-            newPosition.x = -cam.transform.position.x + cam.orthographicSize * cam.aspect;
-        }
-
-        // Wrap around the screen in the y-axis
-        if (transform.position.y > cam.transform.position.y + cam.orthographicSize)
-        {
-            newPosition.y = -cam.transform.position.y - cam.orthographicSize;
-        }
-        else if (transform.position.y < cam.transform.position.y - cam.orthographicSize)
-        {
-            newPosition.y = -cam.transform.position.y + cam.orthographicSize;
-        }
-
-        transform.position = newPosition;
     }
 
+    void DestroyMeteorite()
+    {
+        Destroy(gameObject);
+        isDestroyed = true;
 
+        if (explosionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+        }
+
+        InstantiateSmallMeteorites();
+    }
+
+    void InstantiateSmallMeteorites()
+    {
+        if (smallMeteoritePrefab != null)
+        {
+            Instantiate(smallMeteoritePrefab, transform.position, Quaternion.identity);
+            Instantiate(smallMeteoritePrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("Small meteorite prefab is null!");
+        }
+    }
+
+    protected override void Update()
+    {
+        base.Update(); // Call the base Update method for common functionalities
+        Move(); // Move the big meteorite
+    }
 }

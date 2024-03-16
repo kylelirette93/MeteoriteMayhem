@@ -1,36 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallMeteoriteController : MonoBehaviour
+public class SmallMeteoriteController : MeteoriteController
 {
-
-    public float floatSpeed = 2f;
-    Vector2 randomDirection;
+    public float maxSpeed = 4f;
     private CircleCollider2D circleCollider;
-    private BigMeteoriteController BMCScript;
-
     private GameManager gameManagerScript;
     private bool alreadyHit = false;
-
     public AudioClip explosionSound;
-
     private GameObject bullet;
     bool isDestroyed = false;
-    
-    // Start is called before the first frame update
+
     void Awake()
     {
-       
-        gameManagerScript = GameObject.Find("_GM").GetComponent<GameManager>();
+        gameManagerScript = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.enabled = false;
-        randomDirection = Random.insideUnitCircle.normalized;
         bullet = GameObject.FindWithTag("Bullet");
         Invoke("EnableCollider", 0.2f);
-
-        
-
     }
 
     void EnableCollider()
@@ -38,79 +24,44 @@ public class SmallMeteoriteController : MonoBehaviour
         circleCollider.enabled = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isDestroyed) // Check if the meteorite hasn't been destroyed yet
+        base.OnCollisionEnter2D(collision); // Call the base method first for common collision handling
+
+        if (!isDestroyed && !alreadyHit)
         {
-            // Ensure the collision occurs only once
-            if (!alreadyHit)
+            GameObject collidedObject = collision.gameObject;
+
+            if (collidedObject.CompareTag("Bullet"))
             {
-                foreach (ContactPoint2D contact in collision.contacts)
-                {
-                    GameObject collidedObject = contact.collider.gameObject;
-                    if (collidedObject.CompareTag("Bullet"))
-                    {
-                        // Destroy the meteorite
-                        Destroy(gameObject);
-
-                        // Increment the score
-                        gameManagerScript.IncrementScore(200);
-
-                        // Log a message to verify score increment
-                        Debug.Log("Score incremented!");
-
-                        if (explosionSound != null)
-                        {
-                            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-                        }
-
-                        // Set the alreadyHit flag to true
-                        alreadyHit = true;
-
-                        // Set the flag to true
-                        isDestroyed = true;
-                        Destroy(collision.gameObject);
-                        break; // Exit the loop once a bullet collision is detected
-                    }
-                }
+                DestroyMeteorite();
+                gameManagerScript.IncrementScore(200);
+                alreadyHit = true;
+            }
+            else if (collidedObject.CompareTag("BigMeteorite") || collidedObject.CompareTag("SmallMeteorite"))
+            {
+                LimitSpeed();
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void LimitSpeed()
     {
-        transform.Translate(randomDirection * floatSpeed * Time.deltaTime);
-        ScreenWrap();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
-    void ScreenWrap()
+    void DestroyMeteorite()
     {
-        var cam = Camera.main;
-        var newPosition = transform.position;
+        Destroy(gameObject);
+        isDestroyed = true;
 
-        // Wrap around the screen in the x-axis
-        if (transform.position.x > cam.transform.position.x + cam.orthographicSize * cam.aspect)
+        if (explosionSound != null)
         {
-            newPosition.x = -cam.orthographicSize * cam.aspect;
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         }
-        else if (transform.position.x < cam.transform.position.x - cam.orthographicSize * cam.aspect)
-        {
-            newPosition.x = cam.orthographicSize * cam.aspect;
-        }
-
-        // Wrap around the screen in the y-axis
-        if (transform.position.y > cam.transform.position.y + cam.orthographicSize)
-        {
-            newPosition.y = -cam.orthographicSize;
-        }
-        else if (transform.position.y < cam.transform.position.y - cam.orthographicSize)
-        {
-            newPosition.y = cam.orthographicSize;
-        }
-
-        transform.position = newPosition;
     }
-
-
 }
