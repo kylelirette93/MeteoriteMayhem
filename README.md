@@ -2,12 +2,12 @@
 A clone of the popular game "Asteroids" from 1979, created in Unity.
 
 # Table of Contents
-[About](#About)
-[How to Play](#How-to-Play)
-[Installation](#Installation)
-[Controls](#Controls)
-[Contributing](#Contributing)
-[License](#License)
+- [About](#About)
+- [How to Play](#How-to-Play)
+- [Installation](#Installation)
+- [Controls](#Controls)
+- [Contributing](#Contributing)
+- [License](#License)
 
 ## About
 This game was created as a clone of the classic game Asteroids.
