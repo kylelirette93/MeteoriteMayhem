@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     public GameObject bulletPrefab;
     private GameObject bulletClone;
+    private Transform player;
+
+    private float attackStartTime = 0.2f;
     private float bulletSpeed = 25f;
+    private float yOffset = 0.5f;
     public AudioSource bulletClip;
     
     
-    private float yOffset = 0.5f;
-    private Transform player;
-    private float attackStartTime = 0.2f;
+    
+    
+    
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {       
         player = transform;
     }
 
@@ -28,9 +29,7 @@ public class PlayerCombat : MonoBehaviour
         bulletClone = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
         Rigidbody2D bulletRb = bulletClone.GetComponent<Rigidbody2D>();
         Vector3 bulletDirection = transform.forward;
-        bulletRb.velocity = transform.up * bulletSpeed;
-
-        
+        bulletRb.velocity = transform.up * bulletSpeed;     
     }
 
    

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -39,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isFlying", true);
             transform.Translate(new Vector3(0, yInput * flySpeed * Time.deltaTime, 0));
         }
+
         else
         {
             anim.SetBool("isFlying", false);

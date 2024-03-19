@@ -1,14 +1,19 @@
 using UnityEngine;
 
 public class SmallMeteoriteController : MeteoriteController
+
 {
-    public float maxSpeed = 4f;
-    private CircleCollider2D circleCollider;
-    private GameManager gameManagerScript;
-    private bool alreadyHit = false;
-    public AudioClip explosionSound;
     private GameObject bullet;
+    private GameManager gameManagerScript;
+    private CircleCollider2D circleCollider;
+
+    public float maxSpeed = 4f;
+    private bool alreadyHit = false;
     bool isDestroyed = false;
+
+    public AudioClip explosionSound;
+    
+    
 
     void Awake()
     {

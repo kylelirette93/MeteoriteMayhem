@@ -4,18 +4,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    // TMP variables
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI levelText;
 
-    // UI variables
     public int currentScore = 0;
     private int highScore;
     public int startingLives = 3;
@@ -23,13 +20,10 @@ public class GameManager : MonoBehaviour
     public int currentLevel = 0;
     public Image[] shipImage;
 
-    // Player references
     public GameObject playerPrefab;
     private GameObject player;
     public Transform respawnPoint;
 
-
-    // Variables for managing asteroids for level
     public GameObject smallMeteoritePrefab;
     public GameObject bigMeteoritePrefab;
 
@@ -67,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         // Calculate and display the required score for the current level.
         int requiredScore = CalculateRequiredScore(currentLevel + 1); // Add 1 to currentLevel to calculate next level.
-        Debug.Log("Required Score for Level " + (currentLevel + 1) + ": " + requiredScore);
+        
     }
 
     void StartLevel(int level)
@@ -114,7 +108,6 @@ public class GameManager : MonoBehaviour
     // Below are the functions to be called from menu buttons.
     public void StartGame()
     {
-
         SceneManager.LoadScene("1");
     }
 
@@ -147,19 +140,10 @@ public class GameManager : MonoBehaviour
 
         if (currentLives <= 0)
         {
-            Debug.Log("Game Over");
-            
+            Debug.Log("Game Over");          
             SceneManager.LoadScene("GameOver");
-
-
         }
     }
-
-    
-
-   
-
-   
 
     void Respawn()
     {
@@ -176,7 +160,7 @@ public class GameManager : MonoBehaviour
     }
     void UpdateShipImages()
     {
-        // Update life system UI images
+        // Update life system UI images.
         for (int i = 0; i < shipImage.Length; i++)
         {
             if (i < currentLives)
@@ -227,7 +211,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Check and update high score
-        highScoreManager.CheckAndUpdateHighScore(currentScore);
+        highScoreManager.CheckHighScore(currentScore);
     }
 
 }

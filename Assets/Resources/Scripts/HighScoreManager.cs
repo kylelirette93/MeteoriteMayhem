@@ -20,7 +20,7 @@ public class HighScoreManager : MonoBehaviour
     }
 
     // Method to check and update the high score
-    public void CheckAndUpdateHighScore(int currentScore)
+    public void CheckHighScore(int currentScore)
     {
         if (currentScore > highScore)
         {

@@ -1,13 +1,17 @@
 using UnityEngine;
 
 public class BigMeteoriteController : MeteoriteController
+
 {
-    public float maxSpeed = 2f;
+
     private GameManager gameManagerScript;
-    private bool alreadyHit = false;
-    public AudioClip explosionSound;
     public GameObject smallMeteoritePrefab;
+
+    public float maxSpeed = 2f;
+    private bool alreadyHit = false;
     bool isDestroyed = false;
+
+    public AudioClip explosionSound;
 
     protected override void Start()
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -7,7 +5,8 @@ public class PlayerHealth : MonoBehaviour
     const int maxHealth = 20;
     private int currentHealth;
     private GameManager gameManagerScript;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         currentHealth = maxHealth;   
@@ -35,6 +34,6 @@ public class PlayerHealth : MonoBehaviour
         gameManagerScript.LoseLife();
     }
 
-    // Update is called once per frame
+   
    
 }
