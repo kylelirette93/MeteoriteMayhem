@@ -9,6 +9,8 @@ A clone of the popular game "Asteroids" from 1979, created in Unity.
 - [Contributing](#Contributing)
 - [License](#License)
 
+<img src="https://ibb.co/TRwQpsp" alt="MeteoriteMayhem" width="400" />
+
 ## About
 This game was created as a clone of the classic game Asteroids.
 The player controls a ship that shoots bullets at moving meteorites. The amount of meteorites that spawn and the speed of them
