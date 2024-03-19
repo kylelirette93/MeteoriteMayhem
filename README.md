@@ -9,7 +9,7 @@ A clone of the popular game "Asteroids" from 1979, created in Unity.
 - [Contributing](#Contributing)
 - [License](#License)
 
-<img src="https://ibb.co/TRwQpsp" alt="MeteoriteMayhem" width="400" />
+<img src="https://i.ibb.co/82myTHT/Image-Sequence-002-0284.jpg" alt="MeteoriteMayhem" width="400"/>
 
 ## About
 This game was created as a clone of the classic game Asteroids.
