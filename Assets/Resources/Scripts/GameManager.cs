@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -13,9 +14,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI levelText;
-    
+
     // UI variables
-    private int currentScore = 0;
+    public int currentScore = 0;
+    private int highScore;
     public int startingLives = 3;
     private int currentLives;
     public int currentLevel = 0;
@@ -30,13 +32,16 @@ public class GameManager : MonoBehaviour
     // Variables for managing asteroids for level
     public GameObject smallMeteoritePrefab;
     public GameObject bigMeteoritePrefab;
-   
+
+    public HighScoreManager highScoreManager;
+
+
 
     private void Awake()
     {
         // Display the current level and score.
         levelText.text = "Level " + (currentLevel + 1).ToString();
-        
+
         if (instance == null)
         {
             instance = this;
@@ -46,17 +51,19 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
         scoreText.text = "Score " + currentScore.ToString();
     }
 
     private void Start()
     {
-        
+       
+
         player = GameObject.FindWithTag("Player");
         StartLevel(currentLevel);
         currentLives = startingLives;
         UpdateShipImages();
+
+
 
         // Calculate and display the required score for the current level.
         int requiredScore = CalculateRequiredScore(currentLevel + 1); // Add 1 to currentLevel to calculate next level.
@@ -107,7 +114,7 @@ public class GameManager : MonoBehaviour
     // Below are the functions to be called from menu buttons.
     public void StartGame()
     {
-       
+
         SceneManager.LoadScene("1");
     }
 
@@ -123,6 +130,8 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+
     public void LoseLife()
     {
         if (player != null)
@@ -133,15 +142,25 @@ public class GameManager : MonoBehaviour
         currentLives--;
         Invoke("Respawn", 0.2f);
         livesText.text = currentLives.ToString() + " Lives Left";
-        
+
         UpdateShipImages();
 
         if (currentLives <= 0)
         {
             Debug.Log("Game Over");
+            
             SceneManager.LoadScene("GameOver");
+
+
         }
     }
+
+    
+
+   
+
+   
+
     void Respawn()
     {
         // Set the animator as indicator the player isn't susceptible to damage when respawning.
@@ -163,7 +182,7 @@ public class GameManager : MonoBehaviour
             if (i < currentLives)
                 shipImage[i].enabled = true;
             else
-                shipImage[i].enabled = false;     
+                shipImage[i].enabled = false;
         }
     }
 
@@ -206,6 +225,9 @@ public class GameManager : MonoBehaviour
             currentLevel++;
             StartLevel(currentLevel);
         }
+
+        // Check and update high score
+        highScoreManager.CheckAndUpdateHighScore(currentScore);
     }
 
 }

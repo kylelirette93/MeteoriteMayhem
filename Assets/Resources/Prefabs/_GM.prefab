@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8050403544411841654
 MonoBehaviour:
@@ -46,12 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
-  levelCompleteText: {fileID: 0}
-  requiredScore: 4000
+  levelText: {fileID: 0}
+  currentScore: 0
   startingLives: 3
+  currentLevel: 0
   shipImage:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   playerPrefab: {fileID: 2423022884157556266, guid: bf419689bf62dc34c92a85461cd67dea, type: 3}
   respawnPoint: {fileID: 8814857785267850455, guid: bf419689bf62dc34c92a85461cd67dea, type: 3}
+  smallMeteoritePrefab: {fileID: 0}
+  bigMeteoritePrefab: {fileID: 0}
+  highScoreText: {fileID: 0}
+  levelProgressText: {fileID: 0}
