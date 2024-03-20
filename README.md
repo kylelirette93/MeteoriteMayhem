@@ -33,11 +33,11 @@ yet, so hopefully this will run on older machines.
 3. Run the executable file(Meteorite Mayhem.exe) to launch the game.
 
 ## Controls
-W Key - Move Forward
-S Key - Move Backward
-D Key - Rotate Clockwise
-A Key - Rotate Counter-clockwise
-Space Key - Fire
+- W Key - Move Forward
+- S Key - Move Backward
+- D Key - Rotate Clockwise
+- A Key - Rotate Counter-clockwise
+- Space Key - Fire
 
 ## Contributing
 All are welcome to contribute to this project if they wish to do so. All are also welcome to report bugs, suggest improvements or submit code contributions.
