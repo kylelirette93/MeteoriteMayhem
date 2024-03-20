@@ -28,7 +28,7 @@ proceed to the next level, where another wave of meteorites will spawn. I'm not 
 yet, so hopefully this will run on older machines.
 
 ## Installation
-1. Download the game zip file from [here](https://drive.google.com/file/d/1JEwSAEldx1IEQ_F3_mvFpB9fazfvV0y6/view?usp=sharing)
+1. Download the game zip file from [here](https://drive.google.com/file/d/1zpNW_WRrVCquG7sP1U0CzUVe7OFED6AT/view?usp=sharing)
 2. Extract the zip folder to your desired location.
 3. Run the executable file(Meteorite Mayhem.exe) to launch the game.
 
