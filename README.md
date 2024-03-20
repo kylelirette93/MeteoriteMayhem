@@ -1,6 +1,8 @@
 # MeteoriteMayhem
 A clone of the popular game "Asteroids" from 1979, created in Unity.
 
+<img src="https://i.ibb.co/82myTHT/Image-Sequence-002-0284.jpg" alt="MeteoriteMayhem" width="800"/>
+
 # Table of Contents
 - [About](#About)
 - [How to Play](#How-to-Play)
@@ -8,6 +10,8 @@ A clone of the popular game "Asteroids" from 1979, created in Unity.
 - [Controls](#Controls)
 - [Contributing](#Contributing)
 - [License](#License)
+
+
 
 ## About
 This game was created as a clone of the classic game Asteroids.
@@ -29,11 +33,11 @@ yet, so hopefully this will run on older machines.
 3. Run the executable file(Meteorite Mayhem.exe) to launch the game.
 
 ## Controls
-W Key - Move Forward
-S Key - Move Backward
-D Key - Rotate Clockwise
-A Key - Rotate Counter-clockwise
-Space Key - Fire
+- W Key - Move Forward
+- S Key - Move Backward
+- D Key - Rotate Clockwise
+- A Key - Rotate Counter-clockwise
+- Space Key - Fire
 
 ## Contributing
 All are welcome to contribute to this project if they wish to do so. All are also welcome to report bugs, suggest improvements or submit code contributions.
